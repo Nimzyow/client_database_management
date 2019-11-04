@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import axios from "axios";
 import AuthContext from "./AuthContext";
 import AuthReducer from "./AuthReducer";
-import setAuthToken from "../../Utils/SetAuthToken";
+import SetAuthToken from "../../Utils/SetAuthToken";
 import * as Types from "../Types";
 
 const AuthState = props => {
@@ -19,7 +19,7 @@ const AuthState = props => {
   // Load User
   const loadUser = async () => {
     if (localStorage.token) {
-      setAuthToken(localStorage.token);
+      SetAuthToken(localStorage.token);
     }
 
     try {

@@ -1,8 +1,8 @@
 const express = require("express");
 const connectDB = require("./config/db");
-const app = express();
-const path = require("path");
 
+const path = require("path");
+const app = express();
 //Connect database
 connectDB();
 
@@ -15,7 +15,7 @@ app.use("/api/clients", require("./routes/clients"));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
-  //set static folder
+  // Set static folder
   app.use(express.static("client/build"));
 
   app.get("*", (req, res) =>
