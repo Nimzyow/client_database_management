@@ -74,6 +74,7 @@ const ClientState = props => {
       const res = await axios.put(`/api/clients/${client._id}`, client, config);
 
       dispatch({ type: Types.UPDATE_CLIENT, payload: res.data });
+      dispatch({ type: Types.CLEAR_CURRENT });
     } catch (err) {
       dispatch({
         type: Types.CLIENT_ERROR,

@@ -1,9 +1,18 @@
 import React, { useReducer } from "react";
 import axios from "axios";
 import AuthContext from "./AuthContext";
-import AuthReducer from "./AuthReducer";
-import SetAuthToken from "../../Utils/SetAuthToken";
-import * as Types from "../Types";
+import authReducer from "./AuthReducer";
+import setAuthToken from "../../Utils/SetAuthToken";
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
+  CLEAR_ERRORS
+} from "../Types";
 
 const AuthState = props => {
   const initialState = {
@@ -14,19 +23,21 @@ const AuthState = props => {
     error: null
   };
 
-  const [state, dispatch] = useReducer(AuthReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   // Load User
   const loadUser = async () => {
-    if (localStorage.token) {
-      SetAuthToken(localStorage.token);
-    }
+    setAuthToken(localStorage.token);
 
     try {
       const res = await axios.get("/api/auth");
-      dispatch({ type: Types.USER_LOADED, payload: res.data });
+
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      });
     } catch (err) {
-      dispatch({ type: Types.AUTH_ERROR });
+      dispatch({ type: AUTH_ERROR });
     }
   };
 
@@ -37,57 +48,55 @@ const AuthState = props => {
         "Content-Type": "application/json"
       }
     };
+
     try {
       const res = await axios.post("/api/users", formData, config);
 
       dispatch({
-        type: Types.REGISTER_SUCCESS,
+        type: REGISTER_SUCCESS,
         payload: res.data
       });
 
       loadUser();
     } catch (err) {
       dispatch({
-        type: Types.REGISTER_FAIL,
+        type: REGISTER_FAIL,
         payload: err.response.data.msg
       });
     }
   };
 
-  //Login User
+  // Login User
   const login = async formData => {
     const config = {
       headers: {
         "Content-Type": "application/json"
       }
     };
+
     try {
       const res = await axios.post("/api/auth", formData, config);
 
       dispatch({
-        type: Types.LOGIN_SUCCESS,
+        type: LOGIN_SUCCESS,
         payload: res.data
       });
 
       loadUser();
     } catch (err) {
       dispatch({
-        type: Types.LOGIN_FAIL,
+        type: LOGIN_FAIL,
         payload: err.response.data.msg
       });
     }
   };
 
   // Logout
-  const logOut = () => {
-    dispatch({
-      type: Types.LOGOUT
-    });
-  };
+  const logOut = () => dispatch({ type: LOGOUT });
+
   // Clear Errors
-  const clearErrors = () => {
-    dispatch({ type: Types.CLEAR_ERRORS });
-  };
+  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
+
   return (
     <AuthContext.Provider
       value={{
@@ -97,14 +106,15 @@ const AuthState = props => {
         user: state.user,
         error: state.error,
         register,
+        loadUser,
         login,
         logOut,
-        clearErrors,
-        loadUser
+        clearErrors
       }}
     >
       {props.children}
     </AuthContext.Provider>
   );
 };
+
 export default AuthState;
