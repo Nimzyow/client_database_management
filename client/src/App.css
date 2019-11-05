@@ -2,7 +2,7 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #000;
+  --primary-color: #192a56;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -377,7 +377,7 @@ table th {
 }
 
 .navbar a:hover {
-  color: var(--light-color);
+  color: #74b9ff;
 }
 
 .navbar .welcome span {
