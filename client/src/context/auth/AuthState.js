@@ -11,8 +11,11 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  SPINNER_SHOW,
+  SPINNER_NOSHOW
 } from "../Types";
+import { Types } from "mongoose";
 
 const AuthState = props => {
   const initialState = {
@@ -20,7 +23,8 @@ const AuthState = props => {
     isAuthenticated: null,
     loading: true,
     user: null,
-    error: null
+    error: null,
+    spinner: false
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -68,6 +72,7 @@ const AuthState = props => {
 
   // Login User
   const login = async formData => {
+    showSpinner();
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -81,6 +86,7 @@ const AuthState = props => {
         type: LOGIN_SUCCESS,
         payload: res.data
       });
+      noShowSpinner();
 
       loadUser();
     } catch (err) {
@@ -88,11 +94,18 @@ const AuthState = props => {
         type: LOGIN_FAIL,
         payload: err.response.data.msg
       });
+      noShowSpinner();
     }
   };
 
   // Logout
   const logOut = () => dispatch({ type: LOGOUT });
+
+  //show spinner
+  const showSpinner = () => dispatch({ type: SPINNER_SHOW });
+
+  //dont show spinner
+  const noShowSpinner = () => dispatch({ type: SPINNER_NOSHOW });
 
   // Clear Errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
@@ -105,6 +118,7 @@ const AuthState = props => {
         loading: state.loading,
         user: state.user,
         error: state.error,
+        spinner: state.spinner,
         register,
         loadUser,
         login,

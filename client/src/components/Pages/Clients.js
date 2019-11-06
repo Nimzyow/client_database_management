@@ -15,7 +15,7 @@ const Clients = () => {
       <div>
         <ClientForm />
       </div>
-      <div>
+      <div className="scrollContainer">
         <ClientFilter />
         <ClientsInfo />
       </div>

@@ -1,13 +1,14 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, Fragment } from "react";
 import AuthContext from "../../context/auth/AuthContext";
 import AlertContext from "../../context/Alert/AlertContext";
+import Spinner from "../layout/Spinner/Spinner";
 
 const Login = props => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
 
   const { setAlert } = alertContext;
-  const { login, error, clearErrors, isAuthenticated } = authContext;
+  const { login, error, clearErrors, isAuthenticated, spinner } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -41,38 +42,41 @@ const Login = props => {
   };
 
   return (
-    <div className="form-container">
-      <h1>
-        Account <span className="text-primary">Login</span>
-      </h1>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email Address</label>
+    <Fragment>
+      <div className="form-container">
+        <h1>
+          Account <span className="text-primary">Login</span>
+        </h1>
+        <form onSubmit={onSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+              required
+            />
+          </div>
           <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-            required
+            type="submit"
+            value="Login"
+            className="btn btn-primary btn-block"
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={onChange}
-            required
-          />
-        </div>
-        <input
-          type="submit"
-          value="Login"
-          className="btn btn-primary btn-block"
-        />
-      </form>
-    </div>
+        </form>
+      </div>
+      {spinner && <Spinner />}
+    </Fragment>
   );
 };
 

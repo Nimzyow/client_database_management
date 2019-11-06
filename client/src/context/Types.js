@@ -18,3 +18,5 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CLIENT_ERROR = "CLIENT_ERROR";
+export const SPINNER_SHOW = "SPINNER_SHOW";
+export const SPINNER_NOSHOW = "SPINNER_NOSHOW";

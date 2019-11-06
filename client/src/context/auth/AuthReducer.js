@@ -70,6 +70,16 @@ export default (state, action) => {
         ...state,
         error: null
       };
+    case Types.SPINNER_SHOW:
+      return {
+        ...state,
+        spinner: true
+      };
+    case Types.SPINNER_NOSHOW:
+      return {
+        ...state,
+        spinner: false
+      };
 
     default:
       return state;

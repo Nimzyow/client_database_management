@@ -7,7 +7,16 @@ const ClientItem = ({ client }) => {
 
   const { deleteClient, setCurrent, clearCurrent } = clientContext;
 
-  const { _id, name, email, phone, type, proDes } = client;
+  const {
+    _id,
+    name,
+    email,
+    phone,
+    type,
+    proDes,
+    numberAndStreet,
+    postCode
+  } = client;
 
   const onDelete = () => {
     deleteClient(_id);
@@ -29,6 +38,12 @@ const ClientItem = ({ client }) => {
         </span>
       </h3>
       <ul className="list">
+        {numberAndStreet && (
+          <li>
+            <i className="fas far fa-address-book" /> {numberAndStreet},{" "}
+            {postCode}
+          </li>
+        )}
         {email && (
           <li>
             <i className="fas fa-envelope-open" /> {email}
