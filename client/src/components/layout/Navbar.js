@@ -18,7 +18,15 @@ const Navbar = ({ title, icon }) => {
 
   const authLinks = (
     <Fragment>
-      <li>Hello {user && user.name}</li>
+      <li style={{ marginRight: "9px" }}>
+        Hello{" "}
+        {user &&
+          user.name
+            .split(" ")
+            .slice(0, -1)
+            .join(" ")}{" "}
+        <i className="far fa-smile-beam" />
+      </li>
       <li>
         <Link to="/">Home</Link>
       </li>

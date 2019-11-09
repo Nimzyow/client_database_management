@@ -11,6 +11,7 @@ const ClientsInfo = () => {
 
   useEffect(() => {
     getClients();
+    //eslint-disable-next-line
   }, []);
 
   if (clients !== null && clients.length === 0 && !loading) {

@@ -73,7 +73,8 @@ export default (state, action) => {
     case Types.SPINNER_SHOW:
       return {
         ...state,
-        spinner: true
+        spinner: true,
+        spinnerComment: "loading"
       };
     case Types.SPINNER_NOSHOW:
       return {

@@ -1,4 +1,5 @@
 export const GET_CLIENTS = "GET_CLIENTS";
+export const GET_JOB_ACCEPTED_CLIENTS = "GET_JOB_ACCEPTED_CLIENTS";
 export const CLEAR_CLIENTS = "CLEAR_CLIENTS";
 export const ADD_CLIENT = "ADD_CLIENT";
 export const DELETE_CLIENT = "DELETE_CLIENT";
@@ -20,3 +21,7 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CLIENT_ERROR = "CLIENT_ERROR";
 export const SPINNER_SHOW = "SPINNER_SHOW";
 export const SPINNER_NOSHOW = "SPINNER_NOSHOW";
+export const SUB_MENU1 = "SUB_MENU1";
+export const SUB_MENU2 = "SUB_MENU2";
+export const SUB_MENU3 = "SUB_MENU3";
+export const SUB_MENU4 = "SUB_MENU4";

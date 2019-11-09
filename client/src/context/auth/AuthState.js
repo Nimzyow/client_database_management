@@ -15,7 +15,6 @@ import {
   SPINNER_SHOW,
   SPINNER_NOSHOW
 } from "../Types";
-import { Types } from "mongoose";
 
 const AuthState = props => {
   const initialState = {
@@ -24,7 +23,8 @@ const AuthState = props => {
     loading: true,
     user: null,
     error: null,
-    spinner: false
+    spinner: false,
+    spinnerComment: ""
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);

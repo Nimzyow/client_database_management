@@ -1,8 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./Spinner.css";
 
-const Spinner = () => (
-    <div className="Loader">Loading...</div>
-)
+const Spinner = () => {
+  return (
+    <Fragment>
+      <div className="Loader">Loading...</div>
+    </Fragment>
+  );
+};
 
-export default Spinner
+export default Spinner;

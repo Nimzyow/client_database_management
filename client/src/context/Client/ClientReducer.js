@@ -6,6 +6,13 @@ export default (state, action) => {
       return {
         ...state,
         clients: action.payload,
+        loading: false,
+        subNavBarLoading: false
+      };
+    case Types.GET_JOB_ACCEPTED_CLIENTS:
+      return {
+        ...state,
+        acceptedJobArr: action.payload,
         loading: false
       };
     case Types.ADD_CLIENT:
@@ -64,6 +71,39 @@ export default (state, action) => {
         ...state,
         error: action.payload
       };
+    case Types.SUB_MENU1:
+      return {
+        ...state,
+        firstSubMenu: true,
+        secondSubMenu: false,
+        thirdSubMenu: false,
+        fourthSubMenu: false
+      };
+    case Types.SUB_MENU2:
+      return {
+        ...state,
+        firstSubMenu: false,
+        secondSubMenu: true,
+        thirdSubMenu: false,
+        fourthSubMenu: false
+      };
+    case Types.SUB_MENU3:
+      return {
+        ...state,
+        firstSubMenu: false,
+        secondSubMenu: false,
+        thirdSubMenu: true,
+        fourthSubMenu: false
+      };
+    case Types.SUB_MENU4:
+      return {
+        ...state,
+        firstSubMenu: false,
+        secondSubMenu: false,
+        thirdSubMenu: false,
+        fourthSubMenu: true
+      };
+
     default:
       return state;
   }

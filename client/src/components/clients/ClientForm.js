@@ -20,7 +20,8 @@ const ClientForm = () => {
         numberAndStreet: "",
         secondLineAdd: "",
         thirdLineAdd: "",
-        postCode: ""
+        postCode: "",
+        projNumber: ""
       });
     }
   }, [clientContext, current]);
@@ -35,7 +36,8 @@ const ClientForm = () => {
     numberAndStreet: "",
     secondLineAdd: "",
     thirdLineAdd: "",
-    postCode: ""
+    postCode: "",
+    projNumber: ""
   });
 
   const {
@@ -48,7 +50,8 @@ const ClientForm = () => {
     numberAndStreet,
     secondLineAdd,
     thirdLineAdd,
-    postCode
+    postCode,
+    projNumber
   } = client;
 
   const onChange = e => {
@@ -76,7 +79,8 @@ const ClientForm = () => {
       numberAndStreet: "",
       secondLineAdd: "",
       thirdLineAdd: "",
-      postCode: ""
+      postCode: "",
+      projNumber: ""
     });
   };
 
@@ -96,6 +100,7 @@ const ClientForm = () => {
         name="name"
         value={name}
         onChange={onChange}
+        required
       />
       <input
         type="email"
@@ -103,6 +108,7 @@ const ClientForm = () => {
         name="email"
         value={email}
         onChange={onChange}
+        required
       />
       <input
         type="text"
@@ -110,6 +116,7 @@ const ClientForm = () => {
         name="phone"
         value={phone}
         onChange={onChange}
+        required
       />
       <input
         type="text"
@@ -124,6 +131,7 @@ const ClientForm = () => {
         name="numberAndStreet"
         value={numberAndStreet}
         onChange={onChange}
+        required
       />
       <input
         type="text"
@@ -145,6 +153,7 @@ const ClientForm = () => {
         name="postCode"
         value={postCode}
         onChange={onChange}
+        required
       />
       <input
         type="text"
@@ -152,6 +161,15 @@ const ClientForm = () => {
         name="proDes"
         value={proDes}
         onChange={onChange}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Project number"
+        name="projNumber"
+        value={projNumber}
+        onChange={onChange}
+        required
       />
       <h5>Client Job status?</h5>
       <input
