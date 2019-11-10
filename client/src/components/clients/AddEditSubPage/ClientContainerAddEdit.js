@@ -1,7 +1,7 @@
 import React from "react";
 import ClientForm from "./ClientForm";
-import ClientFilter from "./ClientFilter";
-import ClientsInfo from "./ClientsInfo";
+import ClientFilter from "../ClientFilter";
+import ClientsInfo from "../AddEditSubPage/ClientsInfo";
 
 const ClientContainerAddEdit = () => {
   return (

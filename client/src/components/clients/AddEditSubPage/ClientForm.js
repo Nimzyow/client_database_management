@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import ClientContext from "../../context/Client/ClientContext";
+import ClientContext from "../../../context/Client/ClientContext";
 
 const ClientForm = () => {
   const clientContext = useContext(ClientContext);
@@ -169,7 +169,6 @@ const ClientForm = () => {
         name="projNumber"
         value={projNumber}
         onChange={onChange}
-        required
       />
       <h5>Client Job status?</h5>
       <input

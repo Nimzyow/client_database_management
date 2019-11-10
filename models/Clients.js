@@ -19,7 +19,6 @@ const ClientsSchema = mongoose.Schema({
     type: String,
     default: "Job not accepted"
   },
-
   numberAndStreet: {
     type: String
   },
@@ -32,10 +31,10 @@ const ClientsSchema = mongoose.Schema({
   postCode: {
     type: String
   },
-
   proDes: {
     type: String
   },
+  taskList: [{ type: String }],
   date: {
     type: Date,
     default: Date.now

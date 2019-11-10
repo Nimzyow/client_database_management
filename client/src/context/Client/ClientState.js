@@ -16,7 +16,8 @@ const ClientState = props => {
     thirdSubMenu: false,
     fourthSubMenu: false,
     acceptedJobArr: null,
-    subNavBarLoading: true
+    subNavBarLoading: true,
+    taskList: ["planningpermission", "brfpa", "retainingwallcalc"]
   };
 
   const [state, dispatch] = useReducer(ClientReducer, initialState);
@@ -118,6 +119,7 @@ const ClientState = props => {
 
   //set current client
   const setCurrent = client => {
+    console.log("setCurrent activated");
     dispatch({ type: Types.SET_CURRENT, payload: client });
   };
   //clear current client
@@ -151,6 +153,9 @@ const ClientState = props => {
   const fourthSubSwitch = () => {
     dispatch({ type: Types.SUB_MENU4 });
   };
+  const taskListGen = task => {
+    dispatch({ type: Types.ADD_TASK, payload: task });
+  };
 
   return (
     <ClientContext.Provider
@@ -166,7 +171,9 @@ const ClientState = props => {
         fourthSubMenu: state.fourthSubMenu,
         acceptedJobArr: state.acceptedJobArr,
         subNavBarLoading: state.subNavBarLoading,
+        taskList: state.taskList,
         filterClients,
+        taskListGen,
         clearFilter,
         addClient,
         deleteClient,

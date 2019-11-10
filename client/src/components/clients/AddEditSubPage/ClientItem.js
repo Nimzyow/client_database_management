@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import ClientContext from "../../context/Client/ClientContext";
+import ClientContext from "../../../context/Client/ClientContext";
 
-const ClientItemTask = ({ client }) => {
+const ClientItem = ({ client }) => {
   const clientContext = useContext(ClientContext);
 
   const { deleteClient, setCurrent, clearCurrent } = clientContext;
@@ -17,6 +17,11 @@ const ClientItemTask = ({ client }) => {
     numberAndStreet,
     postCode
   } = client;
+
+  const onDelete = () => {
+    deleteClient(_id);
+    clearCurrent();
+  };
 
   return (
     <div className="card bg-light">
@@ -57,13 +62,22 @@ const ClientItemTask = ({ client }) => {
       </ul>
       <p>
         <button className="btn btn-dark btn-sm">View</button>
+        <button
+          className="btn btn-dark btn-sm"
+          onClick={() => setCurrent(client)}
+        >
+          Edit
+        </button>
+        <button className="btn btn-danger btn-sm" onClick={onDelete}>
+          Delete
+        </button>
       </p>
     </div>
   );
 };
 
-ClientItemTask.propTypes = {
+ClientItem.propTypes = {
   client: PropTypes.object.isRequired
 };
 
-export default ClientItemTask;
+export default ClientItem;

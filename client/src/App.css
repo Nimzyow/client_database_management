@@ -97,6 +97,12 @@ img {
   text-align: left;
 }
 
+/* Arbitrary border */
+
+.arb-border {
+  border: 1px solid #000;
+}
+
 /* Cards */
 .card {
   padding: 1rem;

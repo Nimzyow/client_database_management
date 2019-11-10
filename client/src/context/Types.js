@@ -2,6 +2,7 @@ export const GET_CLIENTS = "GET_CLIENTS";
 export const GET_JOB_ACCEPTED_CLIENTS = "GET_JOB_ACCEPTED_CLIENTS";
 export const CLEAR_CLIENTS = "CLEAR_CLIENTS";
 export const ADD_CLIENT = "ADD_CLIENT";
+export const ADD_TASK = "ADD_TASK";
 export const DELETE_CLIENT = "DELETE_CLIENT";
 export const SET_CURRENT = "SET_CURRENT";
 export const CLEAR_CURRENT = "CLEAR_CURRENT";

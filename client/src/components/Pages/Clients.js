@@ -2,8 +2,8 @@ import React, { useContext, useEffect, Fragment } from "react";
 import ClientContext from "../../context/Client/ClientContext";
 import AuthContext from "../../context/auth/AuthContext";
 import SubNavBar from "../layout/SubNavBar";
-import ClientContainerAddEdit from "../clients/ClientContainerAddEdit";
-import ClientContainerTask from "../clients/ClientContainerTask";
+import ClientContainerAddEdit from "../clients/AddEditSubPage/ClientContainerAddEdit";
+import ClientContainerTask from "../clients/TaskSubPage/ClientContainerTask";
 
 const Clients = () => {
   const authContext = useContext(AuthContext);

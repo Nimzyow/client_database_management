@@ -1,8 +1,8 @@
 import React, { useContext, Fragment, useEffect } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import ClientItem from "../clients/ClientItem";
-import ClientContext from "../../context/Client/ClientContext";
-import Spinner from "../layout/Spinner/Spinner";
+import ClientItem from "../../clients/AddEditSubPage/ClientItem";
+import ClientContext from "../../../context/Client/ClientContext";
+import Spinner from "../../layout/Spinner/Spinner";
 
 const ClientsInfo = () => {
   const clientContext = useContext(ClientContext);

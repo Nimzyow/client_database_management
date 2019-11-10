@@ -21,6 +21,11 @@ export default (state, action) => {
         clients: [action.payload, ...state.clients],
         loading: false
       };
+    case Types.ADD_TASK:
+      return {
+        ...state,
+        taskList: [...state.taskList, action.payload]
+      };
     case Types.DELETE_CLIENT:
       return {
         ...state,
@@ -58,7 +63,11 @@ export default (state, action) => {
         ...state,
         filtered: state.clients.filter(client => {
           const regex = new RegExp(`${action.payload}`, "gi");
-          return client.name.match(regex) || client.proDes.match(regex);
+          return (
+            client.name.match(regex) ||
+            client.proDes.match(regex) ||
+            client.projNumber.match(regex)
+          );
         })
       };
     case Types.CLEAR_FILTER:
