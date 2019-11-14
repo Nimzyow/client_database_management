@@ -87,6 +87,7 @@ router.put("/:id", auth, async (req, res) => {
     email,
     phone,
     type,
+    taskList,
     phone2,
     numberAndStreet,
     secondLineAdd,
@@ -102,6 +103,7 @@ router.put("/:id", auth, async (req, res) => {
   if (phone) clientFields.phone = phone;
   if (phone2) clientFields.phone2 = phone2;
   if (type) clientFields.type = type;
+  if (taskList) clientFields.taskList = taskList;
   if (numberAndStreet) clientFields.numberAndStreet = numberAndStreet;
   if (secondLineAdd) clientFields.secondLineAdd = secondLineAdd;
   if (thirdLineAdd) clientFields.thirdLineAdd = thirdLineAdd;

@@ -1,4 +1,5 @@
 import * as Types from "../Types";
+import { stat } from "fs";
 
 export default (state, action) => {
   switch (action.type) {
@@ -21,11 +22,7 @@ export default (state, action) => {
         clients: [action.payload, ...state.clients],
         loading: false
       };
-    case Types.ADD_TASK:
-      return {
-        ...state,
-        taskList: [...state.taskList, action.payload]
-      };
+
     case Types.DELETE_CLIENT:
       return {
         ...state,
@@ -51,6 +48,14 @@ export default (state, action) => {
         current: null
       };
     case Types.UPDATE_CLIENT:
+      return {
+        ...state,
+        clients: state.clients.map(client =>
+          client._id === action.payload._id ? action.payload : client
+        ),
+        loading: false
+      };
+    case Types.ADD_TASK:
       return {
         ...state,
         clients: state.clients.map(client =>
@@ -86,7 +91,8 @@ export default (state, action) => {
         firstSubMenu: true,
         secondSubMenu: false,
         thirdSubMenu: false,
-        fourthSubMenu: false
+        fourthSubMenu: false,
+        current: null
       };
     case Types.SUB_MENU2:
       return {
@@ -94,7 +100,8 @@ export default (state, action) => {
         firstSubMenu: false,
         secondSubMenu: true,
         thirdSubMenu: false,
-        fourthSubMenu: false
+        fourthSubMenu: false,
+        current: null
       };
     case Types.SUB_MENU3:
       return {
@@ -102,7 +109,8 @@ export default (state, action) => {
         firstSubMenu: false,
         secondSubMenu: false,
         thirdSubMenu: true,
-        fourthSubMenu: false
+        fourthSubMenu: false,
+        current: null
       };
     case Types.SUB_MENU4:
       return {
@@ -110,7 +118,8 @@ export default (state, action) => {
         firstSubMenu: false,
         secondSubMenu: false,
         thirdSubMenu: false,
-        fourthSubMenu: true
+        fourthSubMenu: true,
+        current: null
       };
 
     default:

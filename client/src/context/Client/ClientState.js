@@ -112,6 +112,47 @@ const ClientState = props => {
     }
   };
 
+  //Post an update to mongoose on clients state.
+  const taskListGen = async client => {
+    console.log(client);
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    try {
+      const res = await axios.put(`/api/clients/${client._id}`, client, config);
+      console.log(res.data);
+      dispatch({ type: Types.ADD_TASK, payload: res.data });
+    } catch (err) {
+      dispatch({
+        type: Types.CLIENT_ERROR,
+        payload: err.response.msg
+      });
+    }
+
+    // const newTask = { taskName: task, taskCompletion: "" };
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   }
+    // };
+    // try {
+    //   const res = await axios.put(
+    //     `/api/clients/${client._id}`,
+    //     newTask,
+    //     config
+    //   );
+    //   dispatch({ type: Types.ADD_TASK, payload: res.data });
+    // } catch (err) {
+    //   dispatch({
+    //     type: Types.CLIENT_ERROR,
+    //     payload: err.response.msg
+    //   });
+    // }
+    // dispatch({ type: Types.ADD_TASK, payload: newTask });
+  };
+
   //clear clients
   const clearClients = () => {
     dispatch({ type: Types.CLEAR_CLIENTS });
@@ -152,9 +193,6 @@ const ClientState = props => {
   //fourth submenu select
   const fourthSubSwitch = () => {
     dispatch({ type: Types.SUB_MENU4 });
-  };
-  const taskListGen = task => {
-    dispatch({ type: Types.ADD_TASK, payload: task });
   };
 
   return (

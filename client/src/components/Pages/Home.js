@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth/AuthContext";
 
 const Home = () => {
@@ -11,10 +11,11 @@ const Home = () => {
 
   return (
     <div>
-      <h1>home</h1>
+      <h1>Home</h1>
       <p>
-        This is an imporved version of the engineering app that was made
-        previously.
+        Welcome to the Civil Engineering application. The aim of this app is to
+        handle client data effectively and to eliminate confusion regarding
+        which client has had which projects.
       </p>
     </div>
   );

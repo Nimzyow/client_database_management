@@ -20,6 +20,7 @@ const Clients = () => {
     authContext.loadUser();
     //eslint-disable-next-line
   }, []);
+
   return (
     <Fragment>
       <SubNavBar />
