@@ -1,4 +1,4 @@
-import React, { useContext, useState, Fragment } from "react";
+import React, { useContext, useState, Fragment, useEffect } from "react";
 import ClientContext from "../../../context/Client/ClientContext";
 
 const ClientTaskCreator = () => {
@@ -8,20 +8,17 @@ const ClientTaskCreator = () => {
 
   const [task, setTask] = useState("planningpermission");
 
-  const blankDate = {
-    taskName: "",
-    taskCompletion: ""
-  };
-
   const [taskDate, setTaskDate] = useState([...current.taskList]);
+
+  useEffect(() => {
+    setTaskDate([...current.taskList]);
+  }, [current]);
 
   const currentSelection = current;
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log("what is task? " + task);
     const newTask = { taskName: task, taskCompletion: "" };
-    console.log(newTask);
     setTaskDate([...taskDate, newTask]);
     console.log(taskDate);
   };
@@ -33,10 +30,7 @@ const ClientTaskCreator = () => {
 
   const handleDateChange = e => {
     const updatedTasks = [...taskDate];
-    console.log(updatedTasks);
-    console.log(e.target.value);
     updatedTasks[e.target.dataset.idx].taskCompletion = e.target.value;
-    console.log(updatedTasks);
     setTaskDate(updatedTasks);
   };
 
@@ -46,7 +40,6 @@ const ClientTaskCreator = () => {
 
   const updateTaskLists = e => {
     e.preventDefault();
-    console.log(currentSelection);
     currentSelection.taskList = taskDate;
     console.log(currentSelection);
     taskListGen(currentSelection);
@@ -57,7 +50,33 @@ const ClientTaskCreator = () => {
   if (current !== null) {
     if (taskDate.length === 0) {
       console.log("task");
-      return <h4>Please add a task</h4>;
+      return (
+        <form onSubmit={onSubmit}>
+          <label>
+            Pick task:
+            <select
+              value={task}
+              onChange={event => {
+                handleChange(event);
+              }}
+            >
+              <option value="planningpermission">Planning Permission</option>
+              <option value="planningpermissiondas">
+                Planning Permission (with design access statement)
+              </option>
+              <option value="brfpa">Building Reg full plans application</option>
+              <option value="brbna">
+                Building Reg building notice application
+              </option>
+              <option value="steelcalcrep">Steel calculation report</option>
+              <option value="retainingwallcalc">
+                Retaining wall calculation
+              </option>
+            </select>
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      );
     } else if (taskDate.length > 0) {
       displayTasks = taskDate.map((task, index) => {
         switch (task.taskName) {

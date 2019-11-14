@@ -5,7 +5,7 @@ import ClientContext from "../../../context/Client/ClientContext";
 const ClientItemTask = ({ client }) => {
   const clientContext = useContext(ClientContext);
 
-  const { setCurrent } = clientContext;
+  const { setCurrent, clearCurrent } = clientContext;
 
   const {
     _id,
@@ -58,7 +58,10 @@ const ClientItemTask = ({ client }) => {
       <p>
         <button
           className="btn btn-dark btn-sm"
-          onClick={() => setCurrent(client)}
+          onClick={() => {
+            clearCurrent();
+            setCurrent(client);
+          }}
         >
           View tasks
         </button>

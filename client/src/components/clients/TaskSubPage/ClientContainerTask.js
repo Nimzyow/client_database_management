@@ -19,19 +19,11 @@ const ClientContainerTask = () => {
       </div>
     );
   } else if (current) {
-    if (current.taskList.length === 0) {
-      displayTasks = (
-        <div style={{ border: "1px solid #000" }}>
-          <h3>Please add a task</h3>
-        </div>
-      );
-    } else if (current.taskList.length > 0) {
-      displayTasks = (
-        <div style={{ border: "1px solid #000" }}>
-          <ClientTaskCreator />
-        </div>
-      );
-    }
+    displayTasks = (
+      <div style={{ border: "1px solid #000" }}>
+        <ClientTaskCreator />
+      </div>
+    );
   }
 
   return (
