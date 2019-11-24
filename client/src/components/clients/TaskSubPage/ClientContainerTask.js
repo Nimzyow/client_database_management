@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import ClientFilter from "../ClientFilter";
 import ClientsTask from "./ClientsTask";
 import ClientTaskCreator from "./ClientTaskCreator";
-import ClientTaskCreatorItem from "./ClientTaskCreatorItem";
 import ClientContext from "../../../context/Client/ClientContext";
 
 const ClientContainerTask = () => {

@@ -38,12 +38,6 @@ const SubNavBar = () => {
           >
             Completed
           </a>
-          <a
-            onClick={() => fourthSubSwitch()}
-            className={fourthSubMenu ? "subNavBarSelected" : ""}
-          >
-            Some other thing
-          </a>
         </ul>
       ) : null}
     </Fragment>

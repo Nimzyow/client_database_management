@@ -1,5 +1,6 @@
 import React, { useContext, useState, Fragment, useEffect } from "react";
 import ClientContext from "../../../context/Client/ClientContext";
+import TaskSelector from "./TaskSelector";
 
 const ClientTaskCreator = () => {
   const clientContext = useContext(ClientContext);
@@ -40,6 +41,7 @@ const ClientTaskCreator = () => {
 
   const updateTaskLists = e => {
     e.preventDefault();
+
     currentSelection.taskList = taskDate;
     console.log(currentSelection);
     taskListGen(currentSelection);
@@ -51,31 +53,11 @@ const ClientTaskCreator = () => {
     if (taskDate.length === 0) {
       console.log("task");
       return (
-        <form onSubmit={onSubmit}>
-          <label>
-            Pick task:
-            <select
-              value={task}
-              onChange={event => {
-                handleChange(event);
-              }}
-            >
-              <option value="planningpermission">Planning Permission</option>
-              <option value="planningpermissiondas">
-                Planning Permission (with design access statement)
-              </option>
-              <option value="brfpa">Building Reg full plans application</option>
-              <option value="brbna">
-                Building Reg building notice application
-              </option>
-              <option value="steelcalcrep">Steel calculation report</option>
-              <option value="retainingwallcalc">
-                Retaining wall calculation
-              </option>
-            </select>
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        <TaskSelector
+          onSubmit={onSubmit}
+          task={task}
+          handleChange={handleChange}
+        />
       );
     } else if (taskDate.length > 0) {
       displayTasks = taskDate.map((task, index) => {
@@ -102,7 +84,7 @@ const ClientTaskCreator = () => {
             const dateIddas = `date-${index}`;
             return (
               <div key={`client-${index}`}>
-                <p>Planning Permission</p>
+                <p>Planning Permission (Design access statement)</p>
                 <input
                   type="text"
                   name={dateIddas}
@@ -182,6 +164,40 @@ const ClientTaskCreator = () => {
                 />
               </div>
             );
+          case "partywall":
+            const taskspw = `tasks-${index}`;
+            const dateIdpw = `date-${index}`;
+            return (
+              <div key={`client-${index}`}>
+                <p>Party wall</p>
+                <input
+                  type="text"
+                  name={dateIdrwc}
+                  id={dateIdrwc}
+                  data-idx={index}
+                  className="date"
+                  value={taskDate[index].taskCompletion}
+                  onChange={handleDateChange}
+                />
+              </div>
+            );
+          case "structuralreport":
+            const taskssr = `tasks-${index}`;
+            const dateIdsr = `date-${index}`;
+            return (
+              <div key={`client-${index}`}>
+                <p>Structural Report</p>
+                <input
+                  type="text"
+                  name={dateIdrwc}
+                  id={dateIdrwc}
+                  data-idx={index}
+                  className="date"
+                  value={taskDate[index].taskCompletion}
+                  onChange={handleDateChange}
+                />
+              </div>
+            );
           default:
             break;
         }
@@ -191,31 +207,11 @@ const ClientTaskCreator = () => {
 
   return (
     <Fragment>
-      <form onSubmit={onSubmit}>
-        <label>
-          Pick task:
-          <select
-            value={task}
-            onChange={event => {
-              handleChange(event);
-            }}
-          >
-            <option value="planningpermission">Planning Permission</option>
-            <option value="planningpermissiondas">
-              Planning Permission (with design access statement)
-            </option>
-            <option value="brfpa">Building Reg full plans application</option>
-            <option value="brbna">
-              Building Reg building notice application
-            </option>
-            <option value="steelcalcrep">Steel calculation report</option>
-            <option value="retainingwallcalc">
-              Retaining wall calculation
-            </option>
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <TaskSelector
+        onSubmit={onSubmit}
+        task={task}
+        handleChange={handleChange}
+      />
       <form>
         <label
           style={{ borderBottom: "1px solid #000" }}

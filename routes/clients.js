@@ -51,7 +51,8 @@ router.post(
       secondLineAdd,
       thirdLineAdd,
       postCode,
-      proDes
+      proDes,
+      projNumber
     } = req.body;
 
     try {
@@ -65,7 +66,8 @@ router.post(
         thirdLineAdd,
         postCode,
         phone2,
-        proDes
+        proDes,
+        projNumber
       });
 
       const client = await newClient.save();
@@ -93,7 +95,8 @@ router.put("/:id", auth, async (req, res) => {
     secondLineAdd,
     thirdLineAdd,
     postCode,
-    proDes
+    proDes,
+    projNumber
   } = req.body;
   //Build cleint object
 
@@ -109,6 +112,7 @@ router.put("/:id", auth, async (req, res) => {
   if (thirdLineAdd) clientFields.thirdLineAdd = thirdLineAdd;
   if (postCode) clientFields.postCode = postCode;
   if (proDes) clientFields.proDes = proDes;
+  if (projNumber) clientFields.projNumber = projNumber;
   try {
     let client = await Clients.findById(req.params.id);
     if (!client) return res.status(404).json({ msg: "Contact not found" });

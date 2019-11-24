@@ -1,5 +1,4 @@
 import * as Types from "../Types";
-import { stat } from "fs";
 
 export default (state, action) => {
   switch (action.type) {

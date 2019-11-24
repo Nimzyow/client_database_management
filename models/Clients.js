@@ -35,6 +35,9 @@ const ClientsSchema = mongoose.Schema({
     type: String
   },
   taskList: [{ taskName: { type: String }, taskCompletion: { type: String } }],
+  projNumber: {
+    type: String
+  },
   date: {
     type: Date,
     default: Date.now
