@@ -15,7 +15,8 @@ const ClientItem = ({ client }) => {
     type,
     proDes,
     numberAndStreet,
-    postCode
+    postCode,
+    projNumber
   } = client;
 
   const onDelete = () => {
@@ -59,19 +60,21 @@ const ClientItem = ({ client }) => {
             <i className="fas fa-align-left" /> {proDes}
           </li>
         )}
+        {projNumber && (
+          <li>
+            <i className="fas fa-hamsa" /> {projNumber}
+          </li>
+        )}
       </ul>
-      <p>
-        <button className="btn btn-dark btn-sm">View</button>
-        <button
-          className="btn btn-dark btn-sm"
-          onClick={() => setCurrent(client)}
-        >
-          Edit
-        </button>
-        <button className="btn btn-danger btn-sm" onClick={onDelete}>
-          Delete
-        </button>
-      </p>
+      <button
+        className="btn btn-dark btn-sm"
+        onClick={() => setCurrent(client)}
+      >
+        Edit
+      </button>
+      {/*<button className="btn btn-danger btn-sm" onClick={onDelete}>
+        Delete
+        </button>*/}
     </div>
   );
 };

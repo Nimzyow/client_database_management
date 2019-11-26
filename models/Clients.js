@@ -34,7 +34,10 @@ const ClientsSchema = mongoose.Schema({
   proDes: {
     type: String
   },
-  taskList: [{ taskName: { type: String }, taskCompletion: { type: String } }],
+  taskList: [{
+    taskName: { type: String },
+    taskCompletion: { type: String }
+  }],
   projNumber: {
     type: String
   },

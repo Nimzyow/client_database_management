@@ -28,7 +28,10 @@ const Clients = () => {
       {secondSubMenu && <ClientContainerTask />}
       {thirdSubMenu && (
         <div>
-          <p style={{ color: "#000" }}>Third Menu selection</p>
+          <p style={{ color: "#000" }}>
+            {" "}
+            Clients completed sub page is under construction
+          </p>
         </div>
       )}
       {fourthSubMenu && (
