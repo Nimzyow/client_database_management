@@ -27,7 +27,7 @@ const TaskSelector = ({ onSubmit, task, handleChange }) => {
           <option value="structuralreport">Structural Report</option>
         </select>
       </label>
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Add task to client" />
     </form>
   );
 };

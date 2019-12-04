@@ -26,3 +26,11 @@ export const SUB_MENU1 = "SUB_MENU1";
 export const SUB_MENU2 = "SUB_MENU2";
 export const SUB_MENU3 = "SUB_MENU3";
 export const SUB_MENU4 = "SUB_MENU4";
+export const ADD_SUCCESS_TEXT = "ADD_SUCCESS_TEXT";
+export const UPDATE_SUCCESS_TEXT = "UPDATE_SUCCESS_TEXT";
+export const TASK_SUCCESS_TEXT = "TASK_SUCCESS_TEXT";
+export const RESET_ADD_SUCCESS_TEXT = "RESET_ADD_SUCCESS_TEXT";
+
+export const ADD_LOADING = "ADD_LOADING";
+export const UPDATE_LOADING = "UPDATE_LOADING";
+export const TASK_LOADING = "TASK_LOADING";

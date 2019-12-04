@@ -1,11 +1,12 @@
 import React, { useContext, useState, Fragment, useEffect } from "react";
 import ClientContext from "../../../context/Client/ClientContext";
 import TaskSelector from "./TaskSelector";
+import Spinner from "../../layout/Spinner/Spinner";
 
 const ClientTaskCreator = () => {
   const clientContext = useContext(ClientContext);
 
-  const { taskListGen, current } = clientContext;
+  const { taskListGen, current, taskLoading, addSuccessText } = clientContext;
 
   const [task, setTask] = useState("planningpermission");
 
@@ -49,6 +50,7 @@ const ClientTaskCreator = () => {
 
   let displayTasks;
 
+  //below if and switch case statement handles the task selection and what is to be displayed once its selected.
   if (current !== null) {
     if (taskDate.length === 0) {
       console.log("task");
@@ -172,8 +174,8 @@ const ClientTaskCreator = () => {
                 <p>Party wall</p>
                 <input
                   type="text"
-                  name={dateIdrwc}
-                  id={dateIdrwc}
+                  name={dateIdpw}
+                  id={dateIdpw}
                   data-idx={index}
                   className="date"
                   value={taskDate[index].taskCompletion}
@@ -189,8 +191,8 @@ const ClientTaskCreator = () => {
                 <p>Structural Report</p>
                 <input
                   type="text"
-                  name={dateIdrwc}
-                  id={dateIdrwc}
+                  name={dateIdsr}
+                  id={dateIdsr}
                   data-idx={index}
                   className="date"
                   value={taskDate[index].taskCompletion}
@@ -207,6 +209,11 @@ const ClientTaskCreator = () => {
 
   return (
     <Fragment>
+      {current ? (
+        <label>
+          <h3>{current.name}</h3>
+        </label>
+      ) : null}
       <TaskSelector
         onSubmit={onSubmit}
         task={task}
@@ -223,13 +230,28 @@ const ClientTaskCreator = () => {
           </h3>
         </label>
         {displayTasks}
-        <input
-          type="submit"
-          value="Update tasks"
-          className="btn btn-primary btn-block"
-          onClick={updateTaskLists}
-        />
+        {taskLoading ? (
+          <Spinner />
+        ) : (
+          <input
+            type="submit"
+            value="Add/Update tasks"
+            className="btn btn-primary btn-block"
+            onClick={updateTaskLists}
+          />
+        )}
       </form>
+      {addSuccessText ? (
+        <p
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "20px"
+          }}
+        >
+          {addSuccessText}
+        </p>
+      ) : null}
     </Fragment>
   );
 };

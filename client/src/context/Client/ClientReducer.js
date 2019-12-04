@@ -19,7 +19,8 @@ export default (state, action) => {
       return {
         ...state,
         clients: [action.payload, ...state.clients],
-        loading: false
+        loading: false,
+        addLoading: false
       };
 
     case Types.DELETE_CLIENT:
@@ -52,7 +53,8 @@ export default (state, action) => {
         clients: state.clients.map(client =>
           client._id === action.payload._id ? action.payload : client
         ),
-        loading: false
+        loading: false,
+        updateLoading: false
       };
     case Types.ADD_TASK:
       return {
@@ -60,7 +62,8 @@ export default (state, action) => {
         clients: state.clients.map(client =>
           client._id === action.payload._id ? action.payload : client
         ),
-        loading: false
+        loading: false,
+        taskLoading: false
       };
     case Types.FILTER_CLIENT:
       return {
@@ -82,7 +85,9 @@ export default (state, action) => {
     case Types.CLIENT_ERROR:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        addLoading: false,
+        updateLoading: false
       };
     case Types.SUB_MENU1:
       return {
@@ -120,7 +125,41 @@ export default (state, action) => {
         fourthSubMenu: true,
         current: null
       };
-
+    case Types.ADD_SUCCESS_TEXT:
+      return {
+        ...state,
+        addSuccessText: "Successfully added client to database"
+      };
+    case Types.UPDATE_SUCCESS_TEXT:
+      return {
+        ...state,
+        addSuccessText: "Successfully updated client to database"
+      };
+    case Types.TASK_SUCCESS_TEXT:
+      return {
+        ...state,
+        addSuccessText: "Successfully updated/Added task to database"
+      };
+    case Types.RESET_ADD_SUCCESS_TEXT:
+      return {
+        ...state,
+        addSuccessText: null
+      };
+    case Types.ADD_LOADING:
+      return {
+        ...state,
+        addLoading: true
+      };
+    case Types.UPDATE_LOADING:
+      return {
+        ...state,
+        updateLoading: true
+      };
+    case Types.TASK_LOADING:
+      return {
+        ...state,
+        taskLoading: true
+      };
     default:
       return state;
   }

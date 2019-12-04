@@ -17,12 +17,19 @@ const ClientState = props => {
     fourthSubMenu: false,
     acceptedJobArr: null,
     subNavBarLoading: true,
+    taskLoading: false,
+    addLoading: false,
+    updateLoading: false,
+    addSuccessText: null,
+    updateSuccessText: null,
+    taskSuccessText: null,
     taskList: ["planningpermission", "brfpa", "retainingwallcalc"]
   };
 
   const [state, dispatch] = useReducer(ClientReducer, initialState);
 
   //Get clients
+
   const getClients = async () => {
     try {
       const res = await axios.get("/api/clients");
@@ -59,6 +66,7 @@ const ClientState = props => {
 
   //Add Client
   const addClient = async client => {
+    dispatch({ type: Types.ADD_LOADING });
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -69,6 +77,7 @@ const ClientState = props => {
       const res = await axios.post("/api/clients", client, config);
 
       dispatch({ type: Types.ADD_CLIENT, payload: res.data });
+      addSuccess();
     } catch (err) {
       dispatch({
         type: Types.CLIENT_ERROR,
@@ -91,8 +100,9 @@ const ClientState = props => {
     }
   };
 
-  //update client
+  //Update client
   const updateClient = async client => {
+    dispatch({ type: Types.UPDATE_LOADING });
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -104,6 +114,7 @@ const ClientState = props => {
 
       dispatch({ type: Types.UPDATE_CLIENT, payload: res.data });
       dispatch({ type: Types.CLEAR_CURRENT });
+      updateSuccess();
     } catch (err) {
       dispatch({
         type: Types.CLIENT_ERROR,
@@ -114,7 +125,7 @@ const ClientState = props => {
 
   //Post an update to mongoose on clients state.
   const taskListGen = async client => {
-    console.log(client);
+    dispatch({ type: Types.TASK_LOADING });
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -122,8 +133,9 @@ const ClientState = props => {
     };
     try {
       const res = await axios.put(`/api/clients/${client._id}`, client, config);
-      console.log(res.data);
+      //console.log(res.data);
       dispatch({ type: Types.ADD_TASK, payload: res.data });
+      taskSuccess();
     } catch (err) {
       dispatch({
         type: Types.CLIENT_ERROR,
@@ -195,6 +207,33 @@ const ClientState = props => {
     dispatch({ type: Types.SUB_MENU4 });
   };
 
+  //display successfully added to database text
+  const addSuccess = () => {
+    console.log("addSuccess is being processed");
+    dispatch({ type: Types.ADD_SUCCESS_TEXT });
+    setTimeout(() => {
+      dispatch({ type: Types.RESET_ADD_SUCCESS_TEXT });
+    }, 5000);
+  };
+
+  //display successfully updated teh client to database text
+  const updateSuccess = () => {
+    console.log("updateSuccess is being processed");
+    dispatch({ type: Types.ADD_SUCCESS_TEXT });
+    setTimeout(() => {
+      dispatch({ type: Types.RESET_ADD_SUCCESS_TEXT });
+    }, 5000);
+  };
+
+  //display successfully updated teh client to database text
+  const taskSuccess = () => {
+    console.log("taskSuccess is being processed");
+    dispatch({ type: Types.TASK_SUCCESS_TEXT });
+    setTimeout(() => {
+      dispatch({ type: Types.RESET_ADD_SUCCESS_TEXT });
+    }, 5000);
+  };
+
   return (
     <ClientContext.Provider
       value={{
@@ -210,6 +249,12 @@ const ClientState = props => {
         acceptedJobArr: state.acceptedJobArr,
         subNavBarLoading: state.subNavBarLoading,
         taskList: state.taskList,
+        taskLoading: state.taskLoading,
+        addLoading: state.addLoading,
+        updateLoading: state.updateLoading,
+        addSuccessText: state.addSuccessText,
+        updateSuccessText: state.updateSuccessText,
+        taskSuccessText: state.taskSuccessText,
         filterClients,
         taskListGen,
         clearFilter,

@@ -9,6 +9,13 @@ const About = () => {
         database
       </p>
       <p className="bg-dark p">
+        <strong>Version: </strong> 1.3.0 - Fixed a bug that would crash the web
+        application whenever a particular task was chosen. Made imporvements to
+        the UI to indicate to the user whenever a user has succesfuly been
+        added/updated or task added to a client and added it to the database. -
+        4/12/2019
+      </p>
+      <p className="bg-dark p">
         <strong>Version: </strong> 1.2.0 - Fixed a bug that would crash the web
         application whenever one made a search. Also amended client list to no
         longer display view or delete buttons - 26/11/2019

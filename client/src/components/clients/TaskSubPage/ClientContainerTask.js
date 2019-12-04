@@ -3,11 +3,12 @@ import ClientFilter from "../ClientFilter";
 import ClientsTask from "./ClientsTask";
 import ClientTaskCreator from "./ClientTaskCreator";
 import ClientContext from "../../../context/Client/ClientContext";
+import Spinner from "../../layout/Spinner/Spinner";
 
 const ClientContainerTask = () => {
   const clientContext = useContext(ClientContext);
 
-  const { current } = clientContext;
+  const { current, taskLoading, addSuccessText } = clientContext;
 
   let displayTasks;
 
