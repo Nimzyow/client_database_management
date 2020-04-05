@@ -10,6 +10,10 @@ node_modules/
 /client/.env.test.local
 /client/.env.production.local
 
+package-lock.json
+
+/client/package-lock.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
